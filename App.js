@@ -34,6 +34,7 @@ export default class App extends Component<Props> {
           {instructions}
         </Text>
         <Text>Yes!!!!!!!!!!!</Text>
+		<Text>NOT WORKS</Text>
       </View>
     );
   }
