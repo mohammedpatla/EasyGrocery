@@ -1,5 +1,6 @@
 # EasyGrocery
 This Application was made purely for the purpose of a School Assignment.
+The purpose of this application is to make a skeleton Grocery app which could be used to develop for small budgeted grocery stores with limited development time and budget.
 
 # Instructions to run the application 
 ### Install Cordova on your device and Android SDK
