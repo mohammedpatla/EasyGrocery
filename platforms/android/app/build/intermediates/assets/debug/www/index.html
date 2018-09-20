@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <title>Easy Grocery</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/index.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+
+    <!--Home Page-->
+    <div data-role="page" id="home">
+        <!-- Header-->
+        <div data-role="header" data-theme="b">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#searchPage" data-transition="slidefade" data-direction="reverse">Search</a>
+                    </li>
+                    <li>
+                        <a href="#products" data-transition="slidedown">Products</a>
+                    </li>
+                    <li>
+                        <a id="cartBtn" href="#cart" data-transition="slidefade">Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Content-->
+        <div data-role="content">
+            <h1 id="title">Easy Grocery</h1>
+        </div>
+    </div>
+
+    <!--Products ================================================== -->
+    <div data-role="page" id="products">
+
+        <!-- Header-->
+        <div data-theme="b" data-role="header" data-position="fixed">
+            <h1>Products</h1>
+        </div>
+
+        <!-- Content-->
+        <div data-role="content">
+            <ul id="productsList" data-role="listview">
+                <!--Here Goes the product List-->
+
+            </ul>
+        </div>
+
+        <!-- Footer-->
+        <div data-theme="b" data-role="footer">
+            <a href="#home" class="ui-btn-left" data-transition="slidedown" data-direction="reverse">Back</a>
+        </div>
+    </div>
+    <!--Products END ================================================== -->
+
+    <div data-role="page" id="searchPage">
+        <!-- Header-->
+        <div data-theme="b" data-role="header" data-position="fixed">
+            <h1>Find a product</h1>
+        </div>
+
+        <!-- Content-->
+        <div data-role="content">
+            <label for="search-basic">Search Input:</label>
+            <input type="text" id="myInput" placeholder="Search for product.." title="Type in a name">
+        </div>
+
+        <ul id="productsListSearch" data-role="listview">
+            <!--Here Goes the product List-->
+        </ul>
+
+        <!-- Footer-->
+        <div data-theme="b" data-role="footer">
+            <a href="#home" class="ui-btn-right" data-transition="slidefade">Back</a>
+        </div>
+    </div>
+
+    <!--Cart                                                 -->
+    <div data-role="page" id="cart">
+
+        <!-- Header-->
+        <div data-theme="b" data-role="header" data-position="fixed">
+            <h1>Cart</h1>
+        </div>
+
+        <!-- Content-->
+        <div data-role="content">
+            <div id="emptyCartText">
+                <p>No Items in cart</p>
+            </div>
+            <ul id="cartUserList" data-role="listview">
+                <!-- Will be populated when user clicks on cart button-->
+
+            </ul>
+
+            <!-- /popup -->
+            <div id="confirm" class="ui-content" data-role="popup" data-theme="a">
+                <p id="question">Are you sure you want to delete:</p>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a id="yes" class="ui-btn ui-corner-all ui-mini ui-btn-a" data-rel="back">Yes</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="cancel" class="ui-btn ui-corner-all ui-mini ui-btn-a" data-rel="back">Cancel</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /popup -->
+        </div>
+
+        <div data-theme="b" data-role="footer">
+            <a href="#home" class="ui-btn-left" data-transition="slidefade" data-direction="reverse">Back</a>
+        </div>
+    </div>
+    <!--Cart END -->
+
+    <!--Product info ================================================== -->
+    <div data-role="page" id="product_info">
+
+        <!--Header-->
+        <div data-theme="b" data-role="header" data-position="fixed">
+            <h1>Product Info</h1>
+            <!--Needs to be dynamically updated-->
+        </div>
+
+        <!-- Content-->
+        <div data-role="content">
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <div id="image"> </div>
+                </div>
+                <div id="prod_container" class="ui-block-b">
+                    <span class="bolded">Name: </span>
+                    <p class="prod_ele" id="productName"></p>
+
+                    <span class="bolded">Price: </span>
+                    <p class="prod_ele" id="productPrice"></p>
+
+                    <span class="bolded">Calories: </span>
+                    <p class="prod_ele" id="productCalories"></p>
+
+                </div>
+            </div>
+            <div id="chart_div"></div>
+        </div>
+
+        <!--Footer-->
+        <div data-theme="b" data-role="footer">
+            <a href="#products" class="ui-btn-left" data-transition="slidefade" data-direction="reverse">Back</a>
+            <a id="buyButton" href="#cart" class="ui-btn-right" data-transition="slidefade">Add to Cart</a>
+        </div>
+    </div>
+    <!--Products info END ================================================== -->
+</body>
+
+</html>
