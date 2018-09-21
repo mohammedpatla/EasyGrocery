@@ -13,4 +13,4 @@ The purpose of this application is to make a skeleton Grocery app which could be
   cordova run android
 
 # Team
-Mohammed Patla and Davis Dervinis
+Mohammed Patla and Deivis Dervinis
